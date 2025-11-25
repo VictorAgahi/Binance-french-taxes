@@ -25,7 +25,7 @@ Analyseur de portefeuille Binance avec graphiques de performance et rapport fisc
 ### 1. Cloner ou télécharger le projet
 
 ```bash
-cd binance-wallet-analyzer
+cd Binance-french-taxes
 ```
 
 ### 2. Créer un environnement virtuel
@@ -52,23 +52,8 @@ pip install -r requirements.txt
 
 ## 📊 Utilisation
 
-### Mode CLI (Ligne de Commande)
-
 ```bash
-./venv/bin/python analyze_wallet_v2.py binance-transac.csv
-```
-
-**Sorties générées :**
-
-- `report_2023.png`, `report_2024.png`, `report_2025.png` : Graphiques année par année
-- `wallet_analysis.log` : Logs détaillés de l'analyse
-- `price_cache.json` : Cache des prix (gardez-le pour les futures analyses !)
-- Rapport fiscal dans le terminal
-
-### Mode Web (Interface Interactive) 🌐
-
-```bash
-python app.py
+python3 app.py
 ```
 
 Ouvrez votre navigateur sur `http://localhost:5000` et :
@@ -228,7 +213,3 @@ MIT License - Utilisez librement pour vos analyses personnelles.
 Les calculs fiscaux sont des **estimations** basées sur les données Binance. Pour une déclaration fiscale officielle, consultez un expert-comptable ou fiscaliste spécialisé en crypto-monnaies.
 
 ---
-
-**Fait avec ❤️ pour la communauté crypto**
-# Binance-french-taxes
-# Binance-french-taxes
