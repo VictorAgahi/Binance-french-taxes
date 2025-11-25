@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binance Wallet Analyzer - Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="logo">
+          <span class="logo-icon">📊</span>
+          <h1>Binance Wallet Analyzer</h1>
+        </div>
+        <p class="subtitle">Analysez votre portefeuille crypto en temps réel</p>
+      </header>
+
+      <!-- Upload Section -->
+      <section id="upload-section" class="section">
+        <div class="upload-area" id="drop-zone">
+          <div class="upload-icon">📤</div>
+          <h2>Glissez-déposez votre fichier CSV Binance</h2>
+          <p>ou cliquez pour sélectionner</p>
+          <input type="file" id="file-input" accept=".csv" hidden />
+          <button
+            class="btn-primary"
+            onclick="document.getElementById('file-input').click()"
+          >
+            Choisir un fichier
+          </button>
+        </div>
+      </section>
+
+      <!-- Progress Section -->
+      <section id="progress-section" class="section hidden">
+        <div class="progress-container">
+          <h2>Analyse en cours...</h2>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <p id="progress-text" class="progress-text">Initialisation...</p>
+
+          <!-- Steps -->
+          <div class="steps">
+            <div class="step" id="step-1">
+              <div class="step-icon">1️⃣</div>
+              <div class="step-content">
+                <h3>Chargement des données</h3>
+                <p class="step-status">En attente...</p>
+              </div>
+            </div>
+            <div class="step" id="step-2">
+              <div class="step-icon">2️⃣</div>
+              <div class="step-content">
+                <h3>Reconstruction des flux</h3>
+                <p class="step-status">En attente...</p>
+              </div>
+            </div>
+            <div class="step" id="step-3">
+              <div class="step-icon">3️⃣</div>
+              <div class="step-content">
+                <h3>Génération des graphiques</h3>
+                <p class="step-status">En attente...</p>
+              </div>
+            </div>
+            <div class="step" id="step-4">
+              <div class="step-icon">4️⃣</div>
+              <div class="step-content">
+                <h3>Rapport fiscal</h3>
+                <p class="step-status">En attente...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Logs -->
+          <div class="logs-container">
+            <h3>Logs en temps réel</h3>
+            <div id="logs" class="logs"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Section -->
+      <section id="results-section" class="section hidden">
+        <div class="results-header">
+          <h2>✅ Analyse Terminée !</h2>
+          <button class="btn-secondary" onclick="resetApp()">
+            Analyser un autre fichier
+          </button>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+          <div class="card">
+            <div class="card-icon">💰</div>
+            <div class="card-content">
+              <h3>Net Investi</h3>
+              <p class="card-value" id="net-invested">€</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">📈</div>
+            <div class="card-content">
+              <h3>Valeur Actuelle</h3>
+              <p class="card-value" id="current-value">€</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">📊</div>
+            <div class="card-content">
+              <h3>Transactions</h3>
+              <p class="card-value" id="total-transactions">0</p>
+            </div>
+          </div>
+        </div>
+
+            <!-- Charts by Year -->
+            <div class="yearly-charts-section">
+                <h3>📈 Performance Annuelle</h3>
+                <div id="yearly-charts-container"></div>
+            </div>
+
+        <!-- Fiscal Report -->
+        <div class="fiscal-report">
+          <h3>Rapport Fiscal Détaillé</h3>
+          <div id="fiscal-data"></div>
+
+        <!-- EUR Transactions Section -->
+        <div class="eur-transactions-section">
+          <h3>📋 Transactions EUR - Détails Complets</h3>
+          <div id="eur-transactions-data"></div>
+        </div>
+
+        <!-- Current Holdings -->
+        <div class="holdings">
+          <h3>Portefeuille Actuel</h3>
+          <div id="holdings-list"></div>
+        </div>
+      </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
